@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,700;1,400&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Montserrat", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
+  
+  --color-chocolate: #2D1B14;
+  --color-gold: #D4AF37;
+  --color-cream: #FFFDD0;
+}
+
+@layer base {
+  body {
+    @apply bg-chocolate text-cream font-sans antialiased selection:bg-gold selection:text-chocolate;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-serif;
+  }
+}
+
+.editorial-dots {
+  background-image: radial-gradient(#D4AF37 0.5px, transparent 0.5px);
+  background-size: 24px 24px;
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-100%) skewX(-15deg); }
+  100% { transform: translateX(200%) skewX(-15deg); }
+}
+
+.shimmer-container {
+  @apply relative overflow-hidden;
+}
+
+.shimmer-overlay {
+  content: "";
+  @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent;
+  animation: shimmer 2s infinite;
+  pointer-events: none;
+}
+
+.liquid-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  background: #D4AF37;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  mix-blend-mode: difference;
+  transition: transform 0.1s ease-out;
+}
+
+.liquid-trail {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  background: #D4AF37;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9998;
+  opacity: 0.6;
+}
+
+.glass-card {
+  @apply backdrop-blur-md bg-white/5 border border-white/10 rounded-2xl;
+}
+
+.gold-glow {
+  text-shadow: 0 0 50px rgba(212, 175, 55, 0.2);
+}
+
+.ember-glow {
+  box-shadow: 0 0 20px rgba(212, 175, 55, 0.3), inset 0 0 10px rgba(212, 175, 55, 0.1);
+}
+
+.bg-texture {
+  background-image: url("https://www.transparenttextures.com/patterns/pinstriped-suit.png");
+}
+
+/* Heatwave Distortion Effect */
+.heatwave {
+  filter: url(#heat);
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-4px); }
+  75% { transform: translateX(4px); }
+}
+
+.shake-animation {
+  animation: shake 0.2s cubic-bezier(.36,.07,.19,.97) both;
+}
